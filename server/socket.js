@@ -1,6 +1,10 @@
-const express = require("express");
-const http = require("http");
+
+// import {server} from './index'
+
 const socketIO = require("socket.io");
+
+const io = socketIO(server);
+
 const formatMessage = require("./utils/messages");
 const {
   userJoin,
@@ -9,14 +13,6 @@ const {
   getRoomUsers,
 } = require("./utils/users");
 
-const PORT = 3335;
-
-const app = express();
-
-const server = http.createServer(app);
-
-//create the Socket using the server instance
-const io = socketIO(server);
 
 const botName = "BOT SHACALMAN";
 
@@ -71,6 +67,3 @@ io.on("connect", (socket) => {
     }
   });
 });
-
-server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
-
